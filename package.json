@@ -1,0 +1,19 @@
+{
+  "name": "yui",
+  "version": "1.0.0",
+  "description": "Your Universal Interface",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/williambui/YUI.git"
+  },
+  "author": "William Bui",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/williambui/YUI/issues"
+  },
+  "homepage": "https://github.com/williambui/YUI#readme"
+}
