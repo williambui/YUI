@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/williambui/YUI/issues"
   },
-  "homepage": "https://github.com/williambui/YUI#readme"
+  "homepage": "https://github.com/williambui/YUI#readme",
+  "dependencies": {
+    "aws-sdk": "^2.229.1",
+    "es6-promisify": "^6.0.0",
+    "uuid": "^3.2.1"
+  }
 }
