@@ -26,7 +26,17 @@ provider:
       Action:
         - dynamodb:PutItem
       Resource:
-        - "Fn::Join": ["", ["arn:aws:dynamodb:", {"Ref": "AWS::Region"}, ":", {"Ref": "AWS::AccountId"}, ":table/birthday-table*"]]
+        - "Fn::Join": ["", ["arn:aws:dynamodb:", {"Ref": "AWS::Region"}, ":", {"Ref": "AWS::AccountId"}, ":table/birthday-list*"]]
+    - Effect: Allow
+      Action:
+        - dynamodb:GetItem
+      Resource:
+        - "Fn::Join": ["", ["arn:aws:dynamodb:", {"Ref": "AWS::Region"}, ":", {"Ref": "AWS::AccountId"}, ":table/birthday-list*"]]
+    - Effect: Allow
+      Action:
+        - dynamodb:Scan
+      Resource:
+        - "Fn::Join": ["", ["arn:aws:dynamodb:", {"Ref": "AWS::Region"}, ":", {"Ref": "AWS::AccountId"}, ":table/birthday-list*"]]
 
 # you can overwrite defaults here
 #  stage: dev
@@ -105,15 +115,17 @@ resources:
       Type: "AWS::DynamoDB::Table"
       Properties:
         AttributeDefinitions:
-        - AttributeName: "id"
+        - AttributeName: "name"
           AttributeType: "S"
         KeySchema:
-        - AttributeName: "id"
+        - AttributeName: "name"
           KeyType: "HASH"
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
-        TableName: "birthday-table"
+        TableName: "birthday-list"
+        StreamSpecification:
+          StreamViewType: NEW_IMAGE
 
 #resources:
 #  Resources:
