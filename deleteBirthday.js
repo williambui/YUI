@@ -1,11 +1,11 @@
- 'use strict'
+'use strict'
 
 const lexResponses = require('./lexResponses');
 const databaseManager = require('./databaseManager');
 
 module.exports = function(intentRequest, callback) {
-  var task = intentRequest.currentIntent.slots.TaskInput;
-  console.log(task);
+  var name = intentRequest.currentIntent.slots.Name;
+  console.log(name);
 
   const source = intentRequest.invocationSource;
   if (source === "DialogCodeHook") {
@@ -16,8 +16,8 @@ module.exports = function(intentRequest, callback) {
   if (source === "FulfillmentCodeHook") {
     console.log('FulfillmentCodeHook');
 
-    databaseManager.addTaskToDatabase(task);
-    var text = 'Okay, I added \"' + task + '\" to your to-do list.';
+    databaseManager.deleteBirthdayFromDatabase(name);
+    var text = name + '\'s birthday was deleted.';
     callback(lexResponses.close(intentRequest.sessionAttributes, 'Fulfilled', {contentType: 'PlainText', content: text}));
     return;
   }

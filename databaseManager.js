@@ -77,7 +77,7 @@ module.exports.getAllBirthdaysFromDatabase = function(intentRequest, callback) {
       callback(lexResponses.delegate(intentRequest.sessionAttributes, intentRequest.currentIntent.slots));
       return;
     } else {
-      if (data.Items === undefined) {
+      if (data.Items === null) {
         callback(lexResponses.close(intentRequest.sessionAttributes, 'Fulfilled', {contentType: 'PlainText', content: "No Birthdays Found"}));
       } else {
         console.log("Success", data.Items);
@@ -91,4 +91,90 @@ module.exports.getAllBirthdaysFromDatabase = function(intentRequest, callback) {
       return;
     }
   });
+}
+
+module.exports.deleteBirthdayFromDatabase = function(name) {
+  console.log('deleteBirthdayFromDatabase');
+
+  const params = {
+    TableName: 'birthday-list',
+    Key: {
+      "name": name
+    },
+  };
+
+  dynamo.delete(params, function(err, data) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(data);
+    }
+  });
+}
+
+module.exports.clearBirthdaysFromDatabase = function(intentRequest, callback) {
+  console.log('getAllBirthdaysFromDatabase');
+
+  const params = {
+    TableName: 'birthday-list',
+    ProjectionExpression: "#nme, birthday",
+    ExpressionAttributeNames: {
+      "#nme": "name"
+    }
+  };
+
+  dynamo.scan(params, function(err, data) {
+    if (err) {
+      console.log("Error", err);
+      callback(lexResponses.delegate(intentRequest.sessionAttributes, intentRequest.currentIntent.slots));
+      return;
+    } else {
+      if (data.Items === null) {
+        callback(lexResponses.close(intentRequest.sessionAttributes, 'Fulfilled', {contentType: 'PlainText', content: "No Birthdays Found"}));
+      } else {
+        console.log("Success", data.Items);
+        var text = 'Birthdays cleared';
+        data.Items.forEach(function(item) {
+          const p2 = {
+            TableName: 'birthday-list',
+            Key: {
+              "name": item.name
+            },
+          };
+
+          dynamo.delete(p2, function(err, data) {
+            if (err) {
+              console.log(err);
+            } else {
+              console.log(data);
+            }
+          });
+        });
+        callback(lexResponses.close(intentRequest.sessionAttributes, 'Fulfilled', {contentType: 'PlainText', content: text}));
+      }
+      return;
+    }
+  });
+}
+
+module.exports.addTaskToDatabase = function(task) {
+  console.log('addTaskToDatabase');
+
+  const item = {};
+  item.task = task;
+
+  const params = {
+    TableName: 'todo-list',
+    Item: item
+  };
+
+  dynamo.put(params, function(err, data) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(data);
+    }
+  });
+
+  return item;
 }
