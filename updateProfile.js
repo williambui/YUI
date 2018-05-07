@@ -20,7 +20,7 @@ module.exports = function(intentRequest, callback) {
     console.log('FulfillmentCodeHook');
 
     databaseManager.updateProfileFromDatabase(firstName, lastName, birthday);
-    var text = 'Profile Updated!';
+    var text = 'Okay ' + firstName + '! I updated your profile.';
     callback(lexResponses.close(intentRequest.sessionAttributes, 'Fulfilled', {contentType: 'PlainText', content: text}));
     return;
   }

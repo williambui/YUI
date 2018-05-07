@@ -52,7 +52,7 @@ module.exports.getBirthdayFromDatabase = function(intentRequest, callback, name)
         callback(lexResponses.close(intentRequest.sessionAttributes, 'Fulfilled', {contentType: 'PlainText', content: "Not Found"}));
       } else {
         console.log("Success", data.Item);
-        var text = name + '\'s birthday is:\n' + data.Item.birthday;
+        var text = name + '\'s birthday is on ' + data.Item.birthday = '.';
         callback(lexResponses.close(intentRequest.sessionAttributes, 'Fulfilled', {contentType: 'PlainText', content: text}));
       }
       return;
@@ -81,7 +81,7 @@ module.exports.getAllBirthdaysFromDatabase = function(intentRequest, callback) {
         callback(lexResponses.close(intentRequest.sessionAttributes, 'Fulfilled', {contentType: 'PlainText', content: "No Birthdays Found"}));
       } else {
         console.log("Success", data.Items);
-        var text = 'Here\'s all the birthdays:\n';
+        var text = 'Here\'s when everyone\'s birthday is on:\n';
         data.Items.forEach(function(item) {
           console.log(item.name + ": ", item.birthday);
           text += item.name + ": " + item.birthday + "\n";
@@ -133,7 +133,7 @@ module.exports.clearBirthdaysFromDatabase = function(intentRequest, callback) {
         callback(lexResponses.close(intentRequest.sessionAttributes, 'Fulfilled', {contentType: 'PlainText', content: "No Birthdays Found"}));
       } else {
         console.log("Success", data.Items);
-        var text = 'Birthdays cleared';
+        var text = 'Alright, I removed everyone\'s birthday.';
         data.Items.forEach(function(item) {
           const p2 = {
             TableName: 'birthday-list',
