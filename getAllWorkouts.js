@@ -12,6 +12,6 @@ module.exports = function(intentRequest, callback) {
 
   if (source === "FulfillmentCodeHook") {
     console.log('FulfillmentCodeHook');
-    databaseManager.getFirstNameFromDatabase(intentRequest, callback);
+    databaseManager.getAllWorkoutsFromDatabase(intentRequest, callback);
   }
 }

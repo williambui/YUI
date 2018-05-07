@@ -6,8 +6,15 @@ const getAllBirthdays = require('./getAllBirthdays');
 const deleteBirthday = require('./deleteBirthday');
 const clearBirthdays = require('./clearBirthdays');
 const addTask = require('./addTask');
-const greeting = require('./greeting');
+const getAllTasks = require('./getAllTasks');
+const clearTasks = require('./clearTasks');
+const addWorkout = require('./addWorkout');
+const getAllWorkouts = require('./getAllWorkouts');
+const clearWorkouts = require('./clearWorkouts');
+const updateWorkout = require('./updateWorkout');
 const updateProfile = require('./updateProfile');
+const getProfile = require('./getProfile');
+const greeting = require('./greeting');
 
 module.exports = function(intentRequest, callback) {
   console.log(`dispatch userId=${intentRequest.userId}, intentName=${intentRequest.currentIntent.name}`);
@@ -43,14 +50,49 @@ module.exports = function(intentRequest, callback) {
     return addTask(intentRequest, callback);
   }
 
-  if (intentName === 'Greeting') {
+  if (intentName === 'GetToDo') {
+    console.log(intentName + 'was called');
+    return getAllTasks(intentRequest, callback);
+  }
+
+  if (intentName === 'ClearToDo') {
     console.log(intentName + ' was called');
-    return greeting(intentRequest, callback);
+    return clearTasks(intentRequest, callback);
+  }
+
+  if (intentName === 'AddWorkout') {
+    console.log(intentName + ' was called');
+    return addWorkout(intentRequest, callback);
+  }
+
+  if (intentName === 'GetAllWorkouts') {
+    console.log(intentName + 'was called');
+    return getAllWorkouts(intentRequest, callback);
+  }
+
+  if (intentName === 'ClearWorkouts') {
+    console.log(intentName + ' was called');
+    return clearWorkouts(intentRequest, callback);
+  }
+
+  if (intentName === 'UpdateWorkout') {
+    console.log(intentName + 'was called');
+    return updateWorkout(intentRequest, callback);
   }
 
   if (intentName === 'UpdateProfile') {
     console.log(intentName + ' was called');
     return updateProfile(intentRequest, callback);
+  }
+
+  if (intentName === 'GetProfile') {
+    console.log(intentName + ' was called');
+    return getProfile(intentRequest, callback);
+  }
+
+  if (intentName === 'Greeting') {
+    console.log(intentName + ' was called');
+    return greeting(intentRequest, callback);
   }
 
   throw new Error(`Intent with name ${intentName} not supported`);
