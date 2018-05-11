@@ -23,7 +23,7 @@ YUI is an interactive chatbot that will store and retrieve information. Current 
 * DynamoDB
 
 ### Video Demonstration:
-https://www.useloom.com/share/797f0ab12f4b49ffa34f0b9b2eda5045 
+https://www.useloom.com/share/bc637bbf74bd41669021c0b3caf51b43
 
 ### Architecture Diagram:
 https://cloudcraft.co/view/e8c16e94-fd42-455e-85bb-2aa601d52716?key=BRcypBkTGFQD4bh0i-PYEQ
