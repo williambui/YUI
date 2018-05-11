@@ -16,7 +16,7 @@ YUI is an interactive chatbot that will store and retrieve information. Current 
   * workouts
   
 <!-- /code_chunk_output -->
-### AWS Services
+### AWS Services:
 * Lambda
 * API Gateway
 * Amazon Lex
@@ -25,10 +25,10 @@ YUI is an interactive chatbot that will store and retrieve information. Current 
 ### Video Demonstration:
 https://www.useloom.com/share/797f0ab12f4b49ffa34f0b9b2eda5045 
 
-### Architecture Diagram
+### Architecture Diagram:
 https://cloudcraft.co/view/e8c16e94-fd42-455e-85bb-2aa601d52716?key=BRcypBkTGFQD4bh0i-PYEQ
 
-### Recreate this application
+### Recreate this application:
 1. Download the files by cloning this repository using git clone
 2. Go into the directory using a terminal of your choice
 3. Enter the "aws configure" command to set up your AWS CLI installation and enter your AWS credentials
