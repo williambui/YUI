@@ -18,7 +18,7 @@ YUI is an interactive chatbot that will store and retrieve information. Current 
 <!-- /code_chunk_output -->
 ### AWS Services:
 * Lambda
-* CloudFront
+* CloudFormation
 * Amazon Lex
 * DynamoDB
 
