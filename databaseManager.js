@@ -49,10 +49,11 @@ module.exports.getBirthdayFromDatabase = function(intentRequest, callback, name)
       return;
     } else {
       if (data.Item === undefined) {
-        callback(lexResponses.close(intentRequest.sessionAttributes, 'Fulfilled', {contentType: 'PlainText', content: "Not Found"}));
+        var text = 'Sorry, ' + name + '\s was not found.';
+        callback(lexResponses.close(intentRequest.sessionAttributes, 'Fulfilled', {contentType: 'PlainText', content: text}));
       } else {
         console.log("Success", data.Item);
-        var text = name + '\'s birthday is on ' + data.Item.birthday = '.';
+        var text = name + '\'s birthday is on ' + data.Item.birthday + '.';
         callback(lexResponses.close(intentRequest.sessionAttributes, 'Fulfilled', {contentType: 'PlainText', content: text}));
       }
       return;
@@ -225,7 +226,7 @@ module.exports.clearTasksFromDatabase = function(intentRequest, callback) {
         callback(lexResponses.close(intentRequest.sessionAttributes, 'Fulfilled', {contentType: 'PlainText', content: "No Tasks Found"}));
       } else {
         console.log("Success", data.Items);
-        var text = 'To-do list cleared';
+        var text = 'Alright, I cleared your to-do list.';
         data.Items.forEach(function(item) {
           const p2 = {
             TableName: 'todo-list',

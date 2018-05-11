@@ -20,6 +20,21 @@ module.exports = function(intentRequest, callback) {
   console.log(`dispatch userId=${intentRequest.userId}, intentName=${intentRequest.currentIntent.name}`);
   const intentName = intentRequest.currentIntent.name;
 
+  if (intentName === 'UpdateProfile') {
+    console.log(intentName + ' was called');
+    return updateProfile(intentRequest, callback);
+  }
+
+  if (intentName === 'GetProfile') {
+    console.log(intentName + ' was called');
+    return getProfile(intentRequest, callback);
+  }
+
+  if (intentName === 'Greeting') {
+    console.log(intentName + ' was called');
+    return greeting(intentRequest, callback);
+  }
+
   if (intentName === 'AddBirthday') {
     console.log(intentName + 'was called');
     return addBirthday(intentRequest, callback);
@@ -78,21 +93,6 @@ module.exports = function(intentRequest, callback) {
   if (intentName === 'UpdateWorkout') {
     console.log(intentName + 'was called');
     return updateWorkout(intentRequest, callback);
-  }
-
-  if (intentName === 'UpdateProfile') {
-    console.log(intentName + ' was called');
-    return updateProfile(intentRequest, callback);
-  }
-
-  if (intentName === 'GetProfile') {
-    console.log(intentName + ' was called');
-    return getProfile(intentRequest, callback);
-  }
-
-  if (intentName === 'Greeting') {
-    console.log(intentName + ' was called');
-    return greeting(intentRequest, callback);
   }
 
   throw new Error(`Intent with name ${intentName} not supported`);
